@@ -46,7 +46,7 @@ export default class DB {
         .transaction('tabs')
         .objectStore('tabs')
         .getAll();
-    })
+    });
     // .then(val => this.setState({ data: val }));
   }
 
