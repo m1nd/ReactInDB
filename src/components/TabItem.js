@@ -10,7 +10,7 @@ const TabItem = props => {
       type="checkbox"
       value={props.value}
       label={props.value}
-      checked={props.check}
+      checked={props.checked}
     />
   );
 };

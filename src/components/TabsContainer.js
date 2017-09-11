@@ -14,8 +14,6 @@ export default class TabsContainer extends Component {
     this.props.store.getAllData().then(item => this.setState({ data: item }));
     this.convert = this.convert.bind(this);
     // console.log(this.props.store.data);
-    this.store = {};
-
     // const obj = {};
     // store.map((item, index, arr) => {
     //   if (index === 0) obj[item.tabId] = [{ name: item.name, checked: item.checked }];
@@ -31,18 +29,14 @@ export default class TabsContainer extends Component {
       if (index === 0) obj[item.tabId] = [{ name: item.name, checked: item.checked }];
       else if (arr[index-1].tabId === item.tabId) obj[item.tabId].push({ name: item.name, checked: item.checked });
       else obj[item.tabId] = [{ name: item.name, checked: item.checked }];
+      return obj; 
     });
     return (
       <Tabs s={8}>
-        { Object.keys(obj).map( item => {
+        { Object.keys(obj).map( (item, index) => {
             return ( 
-              <Tab title={item} > 
-                { obj[item].map( el => {
-                    return (
-                      <TabItem label={el.name} checked={el.checked}/>
-                    )
-                  }) 
-                }
+              <Tab title={item} key={index}> 
+                { obj[item].map( (el, ind) => <TabItem key={ind} value={el.name} checked={el.checked}/>) }
               </Tab>
               )   
           }) 
@@ -59,10 +53,7 @@ export default class TabsContainer extends Component {
   render() {
     return (
       <Col s={12} className="center-align">
-      { this.state.data.length === 0 ? '' : 
-          this.convert(this.state.data)            
-
-      }
+        { this.state.data.length === 0 ? '' : this.convert(this.state.data) }
       </Col>
     );
   }
