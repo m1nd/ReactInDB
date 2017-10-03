@@ -55,8 +55,6 @@ export default class DB {
       const tx = db.transaction('tabs', 'readwrite');
       tx.objectStore('tabs').delete(key);
       tx.objectStore('tabs').getAll();
-      // .then(val => this.setState({data: val}));
-      // tx.objectStore("tabs").getAll().then(val => console.log(val));
 
       return tx.complete;
     });
