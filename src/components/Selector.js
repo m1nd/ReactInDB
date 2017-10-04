@@ -10,6 +10,7 @@ export default class Selector extends Component {
       data: [],
     };
     this.getData();
+    this.handleChange = this.handleChange.bind(this);
   }
 
   async getData() {
@@ -18,9 +19,13 @@ export default class Selector extends Component {
     this.setState({ data: filterData });
   }
 
+  handleChange(e) {
+    console.log(e.target.value);
+  }
+
   render() {
     return (
-      <Input s={3} type="select" label="Select Tab" defaultValue="1">
+      <Input s={3} type="select" label="Select Tab" defaultValue="1" onChange={this.handleChange}>
         {this.state.data === 0 ? (
           ''
         ) : (
